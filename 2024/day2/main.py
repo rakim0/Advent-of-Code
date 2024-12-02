@@ -1,21 +1,14 @@
 def check(d):
-    inc = (d[0] < d[1])
-    dec = (d[1] < d[0])
-    for i in range(len(d)-1):
-        if (inc and (d[i] > d[i+1])):
-            return False
-        if (dec and d[i+1] > d[i]):
-            return False
+    inc_or_dec = (d == sorted(d) or d == sorted(d, reverse=True))
     for i in range(len(d)-1):
         diff = abs(d[i]-d[i+1])
         if (diff < 1 or diff > 3):
             return False
-    return True
+    return inc_or_dec and True
 
 def check2(d):
     if (check(d)):
         return True
-    print(d)
     for i in range(0,len(d)):
         ld = d.copy()
         del ld[i]
