@@ -64,6 +64,7 @@ def part1():
                         word += lines[x - d][y + d]
                         if word == "XMAS":
                             ans += 1
+        print(ans)
 
 
 # part 2
@@ -90,17 +91,20 @@ def part2():
                     )
                     if temps == temps2 == ["A", "M", "S"]:
                         ans += 1
+        print(ans)
 
 
-import time
+part1()
+part2()
+# import time
 
-t1 = time.time_ns()
-for i in range(times := 1000):
-    part1()
-t2 = time.time_ns()
-print(f"Time: {(t2-t1)/(1000000*times)} ms")
-t1 = time.time_ns()
-for i in range(times := 1000):
-    part2()
-t2 = time.time_ns()
-print(f"Time: {(t2-t1)/(1000000*times)} ms")
+# t1 = time.time_ns()
+# for i in range(times := 1000):
+#     part1()
+# t2 = time.time_ns()
+# print(f"Time: {(t2-t1)/(1000000*times)} ms")
+# t1 = time.time_ns()
+# for i in range(times := 1000):
+#     part2()
+# t2 = time.time_ns()
+# print(f"Time: {(t2-t1)/(1000000*times)} ms")
