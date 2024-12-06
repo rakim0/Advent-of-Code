@@ -25,7 +25,6 @@ with open("in.txt") as f:
                 i -= 1
 
             if flag:
-                # print(l)
                 ans += l[n // 2]
     print(ans)
 
@@ -60,7 +59,4 @@ with open("in.txt") as f:
                             newFlag = True
                         i -= 1
                 ans += l[n // 2]
-
-    # for key in order.keys():
-    #     print(key, order[key])
     print(ans)
