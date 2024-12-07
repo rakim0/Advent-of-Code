@@ -30,6 +30,8 @@ with open(filename) as f:
             for ch in "+*":
                 s.append(ch)
                 ret |= generate_combinations(n - 1, s, eq)
+                if ret:
+                    break
                 del s[-1]
             return ret
 
@@ -70,6 +72,8 @@ with open(filename) as f:
             for ch in "+*|":
                 s.append(ch)
                 ret |= generate_combinations(n - 1, s, eq)
+                if ret:
+                    break
                 del s[-1]
             return ret
 
