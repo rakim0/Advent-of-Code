@@ -14,7 +14,7 @@ next_transformation["v"] = "<"
 next_transformation["<"] = "^"
 
 visited = list()
-
+total = 0
 with open("in.txt") as f:
     ans = 0
     grid = [list(line.strip()) for line in f]
@@ -46,8 +46,8 @@ with open("in.txt") as f:
             y -= directions[cur][1]
         if check_xy():
             cur = next_transformation[cur]
-    print(sum([line.count("X") for line in grid]))
-
+    total = sum([line.count("X") for line in grid])
+    print(total + 1)
 
 with open("in.txt") as f:
     ans = 0
@@ -71,7 +71,7 @@ with open("in.txt") as f:
                     break
 
         cur = grid[x][y]
-        cnt = len(grid[0]) * len(grid)
+        cnt = total
         while check_xy(x, y, grid):
             while check_xy(x, y, grid) and grid[x][y] != "#":
                 grid[x][y] = "X"
