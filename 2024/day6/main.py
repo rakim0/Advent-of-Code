@@ -15,7 +15,8 @@ next_transformation["<"] = "^"
 
 visited = list()
 total = 0
-with open("in.txt") as f:
+filename = "in.txt"
+with open(filename) as f:
     ans = 0
     grid = [list(line.strip()) for line in f]
 
@@ -49,7 +50,7 @@ with open("in.txt") as f:
     total = sum([line.count("X") for line in grid])
     print(total + 1)
 
-with open("in.txt") as f:
+with open(filename) as f:
     ans = 0
     grid = [list(line.strip()) for line in f]
 
@@ -62,7 +63,6 @@ with open("in.txt") as f:
 
     def checkloop(grid):
         x, y = 0, 0
-
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if grid[i][j] == "^":
@@ -72,7 +72,12 @@ with open("in.txt") as f:
 
         cur = grid[x][y]
         cnt = total
+        s = set()
         while check_xy(x, y, grid):
+            ox = x
+            oy = y
+            if (cur, ox, oy) in s:
+                return True
             while check_xy(x, y, grid) and grid[x][y] != "#":
                 grid[x][y] = "X"
                 x += directions[cur][0]
@@ -82,6 +87,7 @@ with open("in.txt") as f:
                 y -= directions[cur][1]
             if check_xy(x, y, grid):
                 cur = next_transformation[cur]
+            s.update((cur, ox, oy))
             cnt -= 1
             if cnt <= 0:
                 return True
