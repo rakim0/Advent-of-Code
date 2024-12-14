@@ -30,6 +30,8 @@ so just check if it's greater or less than m/2 and n/2
 and accordingly add for each quandrant
 """
 
+import sys
+
 with open("in.txt") as f:
     m = 101
     n = 103
@@ -45,3 +47,44 @@ with open("in.txt") as f:
         if fx != m // 2 and fy != n // 2:
             count[fx > m / 2][fy > n / 2] += 1
     print(count[0][0] * count[0][1] * count[1][0] * count[1][1])
+
+
+with open("in.txt") as f:
+    m = 101
+    n = 103
+    lines = [line.strip() for line in f.readlines()]
+
+    def checkGrid(grid):
+        for x in range(0, m):
+            cnt = 0
+            for y in range(0, n):
+                if grid[y][x] == "#":
+                    cnt += 1
+                else:
+                    cnt = 0
+                if cnt > 10:
+                    return True
+        return False
+
+    while True:
+        for i in range(0, 100000):
+            grid = [["." for _ in range(m)] for _ in range(n)]
+            for line in lines:
+                p, v = line.strip().split(" ")
+                px, py = list(map(int, p[2:].split(",")))
+                vx, vy = list(map(int, v[2:].split(",")))
+                py = n - py - 1
+                vy *= -1
+                fx = (px + (i * vx) + m) % m
+                fy = (py + (i * vy) + n) % n
+                if fx != m // 2 and fy != n // 2:
+                    count[fx > m / 2][fy > n / 2] += 1
+                grid[fy][fx] = "#"
+            if checkGrid(grid):
+                for row in grid:
+                    print("".join(row))
+                    sys.stdout.flush()
+                print(i)
+                ch = input()
+                if ch == "q":
+                    sys.exit()
