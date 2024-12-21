@@ -1,2 +1,3 @@
 .envrc
-**/in.txt/**
+**/in.txt
+**/int.txt

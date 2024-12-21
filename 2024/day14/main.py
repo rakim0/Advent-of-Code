@@ -62,7 +62,7 @@ with open("in.txt") as f:
                     cnt += 1
                 else:
                     cnt = 0
-                if cnt > 10:
+                if cnt > 20:
                     return True
         return False
 
@@ -81,6 +81,7 @@ with open("in.txt") as f:
                     count[fx > m / 2][fy > n / 2] += 1
                 grid[fy][fx] = "#"
             if checkGrid(grid):
+                grid = grid[-1::-1]
                 for row in grid:
                     print("".join(row))
                     sys.stdout.flush()
